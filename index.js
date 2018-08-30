@@ -91,7 +91,9 @@ export class ControlledInput extends PureComponent {
     const nextSelection = this.getNextSelection(value, nextValue, selection);
     this.setState({ selection: nextSelection });
     if (onChangeText) {
-      onChangeText(nextValue);
+      const _nextValue = onChangeText(nextValue);
+      const _nextSelection = this.getNextSelection(nextValue, _nextValue, nextSelection);
+      this.setState({selection: _nextSelection});
     }
     return this.props.onKeyPress && this.props.onKeyPress(event);
   }

@@ -55,7 +55,11 @@ export default class Container extends Component {
     return (
       <ControlledInput
        // filter only numberic characters
-        onChangeText={(value) => this.setState({ value: value.replace(/\D/g, '') })}
+        onChangeText={(value) => {
+          const newValue = value.replace(/\D/g, '');
+          this.setState({ value: newValue });
+          return newValue; // must return a value
+          }
         value={this.state.value}
         style={{ width: 300, height: 70, borderWidth: 1 }}
       />
